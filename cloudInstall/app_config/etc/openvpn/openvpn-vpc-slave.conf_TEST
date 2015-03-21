@@ -1,0 +1,27 @@
+
+client
+
+remote ch1.swirlvpn.com 1196
+
+ca       /etc/openvpn/keys-vpc-connection/ca.crt
+cert     /etc/openvpn/keys-vpc-connection/slave.crt
+key      /etc/openvpn/keys-vpc-connection/slave.key
+tls-auth /etc/openvpn/keys-vpc-connection/ta.key 1
+
+client
+dev tun
+proto udp
+nobind
+script-security 1
+persist-key
+persist-tun
+auth-nocache
+comp-lzo yes
+
+# Messages to output, verbosity and consective messages
+verb 2
+mute 3
+syslog openvpn-vpc-slave
+#log-append /var/log/server/openvpn/vvslave-openvpn.log
+
+explicit-exit-notify 2

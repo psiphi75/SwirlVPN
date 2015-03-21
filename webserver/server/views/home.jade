@@ -1,0 +1,77 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include mixins/commonMixins
+
+block content
+
+  //- Main jumbotron for a primary marketing message or call to action
+  .jumbotron
+    .container
+      .col-md-offset-1.col-md-5
+        p: b VPN optimized for mobile devices
+        p: i
+            | Whether you are using 3G, 4G, Wi-Fi or a physical connection, Swirl VPN will greatly improve
+            | and secure your Internet connection speed.
+
+        .well
+          p Connect in 3 easy steps:
+          ol
+            li
+              a.btn.btn-success.btn-lg(onclick="location.href='/signup'") Sign up for free
+            li Download the OpenVPN app
+            li Configure and Connect
+
+      .col-md-5
+        img.home-phone(src='/img/swirlvpn_mobile.jpg',width='263',height='400',alt='Secure and fast VPN for mobile',title='Fast mobile VPN')
+
+  .container
+   .marketing
+    .row
+      .col-lg-4
+        .icon.icon-fast.icon-fast-dims(alt='Speed up your mobile browsing',title='Browse the web twice as fast')
+        h2 Turbo Charged
+        p
+          | Swirl VPN optimizes web sites that you are browsing on the fly. So it makes your web pages
+          | load twice as fast when you using a mobile device. And it halves the amount of data you consume.
+        p
+          a.btn.btn-default(href='/features#DoubleBandwidth') View details »
+        hr
+
+      .col-lg-4
+        .icon.icon-secure.icon-secure-dims(alt='Secure VPN for mobile',title='Swirl VPN is very secure')
+        h2 Secure
+        p
+          | Swirl VPN secures your wireless signal, so noone can eavesdrop on what you are doing.
+          | You can penetrate firewalls and evade prying eyes. It is the highly secure OpenVPN software
+          | with 1024-bit SSL encryption.
+        p
+          a.btn.btn-default(href='/features#Secure') View details »
+        hr
+
+      .col-lg-4
+        .icon.icon-reliable.icon-reliable-dims(alt='Reliable and Efficient VPN',title='Swirl VPN is reliable and efficient for your mobile device')
+        h2 Reliable &amp; Efficient
+        p
+          | Swirl VPN is currently in 3 continents and more are coming.  You can switch to any server
+          | world-wide, at any time.  Using less wireless signal reduces your power consumption so your
+          | battery lasts longer.
+        p
+          a.btn.btn-default(href='/features#Global') View details »
+        hr

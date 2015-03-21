@@ -1,0 +1,186 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include mixins/commonMixins
+
+block content
+
+  .jumbotron
+    .container
+      h1.col-md-10.col-md-offset-1 Frequently Asked Questions
+      p.col-md-10.col-md-offset-1 Here are some commonly asked questions.  Please let us know if you have any further questions.
+
+  .container
+    .row
+      .col-md-12
+        h2 Content
+        ol.prettyListIndent
+          li
+            a(href='#how-to-connect-to-swirl-vpn') How do I connect to Swirl VPN?
+          li
+            a(href='#what-is-vpn') What is VPN?
+          li
+            a(href='#how-does-it-work') How does it work?
+          li
+            a(href='#how-is-it-different') How is Swirl VPN different from other VPN services?
+          li
+            a(href='#what-is-compressed') What does Swirl VPN compress?
+          li
+            a(href='#what-is-bitcoin') What is BitCoin and how does it work?
+          li
+            a(href='#how-to-get-bitcoin') How do I get BitCoins?
+
+
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#how-to-connect-to-swirl-vpn How do I connect to Swirl VPN?
+        p Swirl VPN uses the highly trusted <a href='http://openvpn.net/'>OpenVPN</a> VPN protocol which is available on all
+         | popular operating systems.  Click on the relevant link to install OpenVPN on your operating system:
+        ul.prettyListIndent
+          li
+            a(href='/documentation/vpn_for_android') Android phones and tablets
+          li
+            a(href='/documentation/vpn_for_iphone') iPhones and iPads
+          li
+            a(href='/documentation/vpn_for_windows') Windows (XP / Vista / Win 7 / Win 8)
+          li
+            a(href='/documentation/vpn_for_linux') Linux
+
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#what-is-vpn What is VPN?
+        p
+          | VPN stands for Virtual Private Network.  It allows a computer or mobile device to securely connect from one network to another.  With
+          | Swirl VPN you will be able to connect to the Internet securely.
+        p A VPN will provide the following things:
+        ul.prettyListIndent
+          li An encrypted network where no-one can see what you are doing; great for when you are at a hotel or public wi-fi hotspot.
+          li A tunnel that can go through firewalls (e.g. work, university or governmental censorship) to give you unrestricted access to the Internet.
+          li The ability to connect to the Internet as if you are in another country.  This is useful if you want to purchase goods or services internationally.
+          li Hide your public IP address.  This means the websites you connect to will only see the Swirl VPN IP addresses.
+          li There are many more reasons you may want a secure and private connection to the Internet.
+
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#how-does-it-work How does it work?
+        p
+          | Swirl VPN uses OpenVPN, which is one of the many types of VPN.  However, OpenVPN is one of the fastest and most secure VPN technologies that
+          | works well on all devices.
+        p To connect to Swirl VPN you need OpenVPN installed on your operating system (see our instructions).
+          | OpenVPN will then encrypt <b>all</b> your network traffic and send it to Swirl VPN servers.  The Swirl VPN servers then relay your
+          | network traffic to the Internet.
+        p
+          | OpenVPN is uses <a alt="SSL and TLS description" href="http://en.wikipedia.org/wiki/Secure_Socket_Layer">SSL / TLS</a> to secure your Internet connection.  This is the same type of encryption that banks and governments trust to
+          | communicate securely.  At Swirl VPN we use 1024 bit encryption.
+
+
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#how-is-it-different How is Swirl VPN different from other VPN services?
+        p
+          | Swirl VPN provides all the standard VPN services as other VPN providers, plus Swirl VPN will optimize your Internet
+          | traffic.  This is something other VPN vendors will not do.  It does this by:
+        ul.prettyListIndent
+          li fetching website items before your browser requests it (only on the server side).
+          li reducing the size of the pages that are downloaded.
+          li slightly reducing the quality of some images.
+        p
+          | We reduce the size of images and remove any redundant information.  Some images may appear with slightly less quality, but this
+          | will be hardly noticeable.
+
+        p
+          | Below is an example of a compressed image:
+        table
+         tbody
+          tr
+           td
+            h3(style='text-align:center') Original
+            p(style='text-align:center') <b>Size:</b> 101.1 kB
+            p(style='text-align:center') <b>Download time:</b> 1.8 seconds*
+           td
+            h3(style='text-align:center') Through Swirl VPN
+            p(style='text-align:center') <b>Size:</b> 14.0 kB, or 7.2 times less data transfer
+            p(style='text-align:center') <b>Download time:</b> 0.4 seconds*
+          tr
+           td
+            img(src='/img/faq/_MG_9229_ORIG.jpg',style='padding:5px')
+           td
+            img(src='/img/faq/_MG_9229_SV.jpg',style='padding:5px')
+
+
+        p Image source (with permission): <a href='http://www.kuvamatka.com/india/'>&nbsp;&nbsp;Aarre Rinne</a>
+        p * Based on average 3G connection (500 kbps with 200 ms latency)
+
+
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#what-is-compressed What does Swirl VPN compress?
+        p
+          | Swirl VPN will compress normal user browsing, it will compress the following items:
+        ul.prettyListIndent
+          li Images (jpeg/jpg, gif, png) - jpeg/jpg images are reduced in quality, others are optimized using other methods.
+          li Text based items (html, css, xml, javascript) - redundant information like comments are removed.
+
+        p
+          | Some types of traffic are difficult or impossible to compress further.  Swirl VPN will work with all Internet traffic, but
+          | it is not able compress the following traffic:
+        ul.prettyListIndent
+          li Secure sites that use https, like when you log into your bank account.
+          li Any video streaming, like YouTube, Vimeo, etc - these sites will work normally, but without reduction in size.
+          li Any other content that does not use normal http (like BitTorrent, online Radio, etc), it works just like normal VPN.
+
+
+    //- What is bitcoin
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#what-is-bitcoin What is BitCoin and how does it work?
+        p
+         | BitCoin is a virtual crypto currency that you can use to purchase Swirl VPN data.  BitCoin is new type of currency that has become popular.  It allows secure
+         | transactions between two parties, like a credit card.  However, it has advantages over credit cards.
+        p The video below explains what BitCoins are and how they work:
+        iframe(width='560',height='315',src='https://www.youtube-nocookie.com/embed/Um63OQz3bjo?rel=0',frameborder='0',allowfullscreen)
+
+    //- How to get bitcoins
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2#how-to-get-bitcoin How do I get BitCoins?
+        p There are many ways to obtain BitCoins.  One method is buy them through an exchange using your credit card.  A couple of popular exchanges are:
+        ul
+          li
+            a(href='https://www.mtgox.com/') https://www.mtgox.com/
+          li
+            a(href='https://www.bitstamp.net/') https://www.bitstamp.net/
+
+        p There are other ways to obtain BitCoins:
+        ul
+          li
+            a(href='http://howtobuybitcoins.info/') http://howtobuybitcoins.info/
+        p
+          b Swirl VPN does not take responsibility for any of the sites above.
+
+
+    br
+    br

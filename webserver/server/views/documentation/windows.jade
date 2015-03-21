@@ -1,0 +1,110 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+
+extends ../layout
+
+include ../mixins/commonMixins
+
+block content
+
+
+  mixin showJumbotron("Swirl VPN for Windows", "These instructions will help you get connected to Swirl VPN with Windows, these instrunctions are valid for Windows XP, Windows Vista, Windows 7 and Windows 8.")
+
+  .container
+    .row
+      .col-md-12
+          ol
+            mixin docsCreateAccount_viaDownload
+
+            br
+            h3
+                li#li_head Install "Securepoint SSL VPN"
+            p Download the "Securepoint SSL VPN" program from Sourceforge.  We recommend you use
+             | <a href='http://sourceforge.net/projects/securepoint/files/'>"Securepoint SSL VPN"</a>, we believe
+             | it is the simplest OpenVPN client that is available, however, you can use any other OpenVPN client.
+             | Click the link below to download:
+            a(href='http://sourceforge.net/projects/securepoint/files/') http://sourceforge.net/projects/securepoint/files/
+            p
+            p <em>Disclaimer:</em> Swirl VPN is not associated with "Securepoint SSL VPN".
+
+            br
+            h3
+                li#li_head Install "Securepoint SSL VPN"
+            p
+             | Once the "Securepoint SSL VPN" installer has been downloaded you can do double click on the installer.  Accept all the
+             | default settings.
+            p
+             | At one stage you may be asked to install "device software".  Click "Install" to continue.  This is required to
+             | create a connection between your PC and Swirl VPN.
+            img(alt='Securepoint SSL VPN - accept install of TAP device', src='/img/ins/win_9.png')
+
+            br
+            br
+            h3
+                li#li_head Run "Securepoint SSL VPN"
+            p
+             | <b>Important:</b> Make sure for Windows Vista and Windows 7 that you run "Securepoint SSL VPN" as an administrator.  To do
+             | this you right-click on the "Securepoint SSL VPN" icon on the desktop, then click "Run as administrator".
+            img(alt='Securepoint SSL VPN - running it', src='/img/ins/win_11.png')
+            p
+             | This will start Securepoint SSL VPN, you will see the screen below.
+            img(alt='Securepoint SSL VPN - file navigation', src='/img/ins/win_12.png')
+            p You will also see the Securepoint SSL VPN shield, <img id='inline' alt='Securepoint SSL VPN shield icon' src='/img/ins/win_17_spvpn_icon.png'>
+             | , in the Windows taskbar.  It will be blue when you are not connected to
+             | a VPN service.
+            img(alt='Securepoint SSL VPN - VPN Region list', src='/img/ins/win_17_not_connected.png')
+            p
+             | Click the "Import" button to import the "SwirlVPN-Region.ovpn" configuration file you downloaded earlier.
+            img(alt='Securepoint SSL VPN - import ovpn file', src='/img/ins/win_12_import.png')
+            p
+             | Click the <img id='inline' alt='Securepoint SSL VPN import button' src='/img/ins/win_14_button.png'> button in the
+             | "Import existing configuration:" section near the bottom of the window.  Then find and select the
+             | "SwirlVPN-Region.ovpn" configuration file you downloaded earlier.  Then click "Import".
+            img(alt='Securepoint SSL VPN - open config', src='/img/ins/win_14.png')
+
+            br
+            br
+            h3
+                li#li_head Connect to Swirl VPN
+            p You will see the region you just imported.  Click on the "Connect" button.
+            img(alt='Securepoint SSL VPN - VPN Region list', src='/img/ins/win_16.png')
+
+            p Once connected you will see the following screen.
+            img(alt='Securepoint SSL VPN - VPN Region list', src='/img/ins/win_17.png')
+            p The Securepoint SSL VPN shield in the Windows taskbar will be green when connected.
+            img(alt='Securepoint SSL VPN - VPN Region list', src='/img/ins/win_17_connected.png')
+
+            p
+              | Once you are connected you should ensure that your IP address is actually changed.  Click the link
+              | below and you will see that your location is the same as the Swirl VPN region you selected:
+            a(href='http://whatismyipaddress.com/') http://whatismyipaddress.com/
+
+
+            br
+            br
+            h3
+                li#li_head Disconnecting
+            p
+              | You can click "Disconnect" to disconnect the connection at any time.
+            img(alt='Securepoint SSL VPN - disconnect', src='/img/ins/win_17.png')
+
+            br
+
+  br
+  br
+  mixin creativeCommonsLicense

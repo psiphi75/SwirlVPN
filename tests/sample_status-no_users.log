@@ -1,0 +1,6 @@
+TITLE,OpenVPN 2.2.1 x86_64-linux-gnu [SSL] [LZO2] [EPOLL] [PKCS11] [eurephia] [MH] [PF_INET6] [IPv6 payload 20110424-2 (2.2RC2)] built on Feb 13 2013
+TIME,Thu Aug  8 10:20:24 2013,1375957224
+HEADER,CLIENT_LIST,Common Name,Real Address,Virtual Address,Bytes Received,Bytes Sent,Connected Since,Connected Since (time_t)
+HEADER,ROUTING_TABLE,Virtual Address,Common Name,Real Address,Last Ref,Last Ref (time_t)
+GLOBAL_STATS,Max bcast/mcast queue length,0
+END

@@ -1,0 +1,157 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+block extra_css
+  link(type='text/css', rel='stylesheet', href='/vendor/css/slider.css')
+
+block content
+
+  .jumbotron
+    .container
+      h1.col-md-10.col-md-offset-1 Purchase Data / Pricing
+      p.col-md-10.col-md-offset-1 Select a data plan below, or create your own.  Pay using Bitcoin.  Credit card payments are coming soon.
+
+
+
+  .container
+    .row
+
+
+      .well
+
+        //- Data selection panel
+        .row
+          .col-md-12
+            .panel.panel-primary
+
+              //- Heading
+              .panel-heading Select data plan
+
+              //- Panel body
+              .panel-body
+                a.btn.btn-block.btn-data-plan
+                  .col-md-4.btn-data-plan-name Tester
+                  .col-md-4.btn-data-plan-gb 1 GB
+                  .col-md-4.btn-data-plan-price $1.00
+                  .btn-data-plan-id(style="display: none;") 0
+                a.btn.btn-block.btn-data-plan
+                  .col-md-4.btn-data-plan-name Basic
+                  .col-md-4.btn-data-plan-gb 5 GB
+                  .col-md-4.btn-data-plan-price $3.54
+                  .btn-data-plan-id(style="display: none;") 20
+                a.btn.btn-block.btn-data-plan
+                  .col-md-4.btn-data-plan-name Standard
+                  .col-md-4.btn-data-plan-gb 15 GB
+                  .col-md-4.btn-data-plan-price $6.84
+                  .btn-data-plan-id(style="display: none;") 50
+                .btn.btn-block.btn-data-plan#btn-data-plan-custom
+                  .row
+                    .col-md-4.btn-data-plan-name Custom
+                    #amount-data.col-md-4.btn-data-plan-gb 50 GB
+                    #amount-data-price.col-md-4.btn-data-plan-price $16.00
+                    #amount-data-id.btn-data-plan-id(style="display: none;") 90
+                  .row.btn-data-plan-slider
+                    b 1 GB
+                    #data-slider.slider.slider-horizontal(style='width: 156px;')
+                      .slider-track
+                        .slider-selection(style='left: 0%; width: 50%;')
+                        .slider-handle.round(style='left: 50%;')
+                        .slider-handle.round.hide(style='left: 0%;')
+                      .tooltip.top(style='top: -30px; left: 78px;')
+                      input#sl1(data-slider-id='data-slider', type='text', data-slider-min='0', data-slider-max='199', data-slider-step='1', data-slider-value='90', style='display: none;')
+                    b 200 GB
+
+        //- Payment selection panel
+        .row
+          .col-md-12
+            .panel.panel-primary
+              //- Heading
+              .panel-heading Select your payment method
+              //- Panel body
+              .panel-body
+                a.btn.btn-block.btn-payment-method
+                  .col-md-4.btn-payment-method-name(style='padding: 15px;') Bitcoin
+                  .col-md-8.btn-payment-method-image
+                    .icon.icon-bitcoin.icon-bitcoin-dims(alt='We accept BitCoin')
+
+                a.btn.btn-block.btn-payment-method
+                  .col-md-4.btn-payment-method-name(style='padding: 15px;') PayPal
+                  .col-md-8.btn-payment-method-image
+                    img(src='/img/paypal_am.png')
+
+
+
+        //- Create Account selection panel
+        - if (! userSignedIn || ! accountActivated) {
+
+          .row
+            .col-md-12
+              .panel.panel-primary
+
+                //- Heading
+                .panel-heading Create an account first
+
+                //- Panel body
+
+                - if ( ! userSignedIn ) {
+
+                  //- http://bootsnipp.com/snippets/featured/group-buttons
+                  #panel-not-signed-in.panel-body
+                    b You must sign-in or create a free account before you order.
+                    .ui-group-buttons.col-md-4.col-md-offset-8
+                      button.btn.btn-success.btn-lg#btn-sign-up(type='button') Sign-up
+                      .or.or-lg
+                      button.btn.btn-warning.btn-lg#btn-login(type='button') Login
+
+                - } else if ( ! accountActivated ) {
+
+                  #panel-not-activated.panel-body
+                    b You must activate your account before you purchase data.
+
+                - }
+        - }
+
+
+        //- Next button
+        .row
+          .col-md-1.col-md-offset-10
+            form#payment-form(method='post')
+              input#payment-form-data-plan-name(type='hidden',name='plan-name',value='')
+              input#payment-form-data-plan-gb(type='hidden',name='plan-gb',value='')
+              input#payment-form-data-plan-price(type='hidden',name='plan-price',value='')
+              input#payment-form-data-plan-id(type='hidden',name='plan-id',value='')
+              input#payment-form-payment-method-name(type='hidden',name='method',value='')
+              button#btn-next.btn.btn-lg.btn-primary(type='submit') Next
+
+  include modals/alert
+  include modals/form-errors
+
+
+block scripts
+  - var objJSON = 'var pricingData = ' + JSON.stringify(pricingData) + ';';
+  script!= objJSON
+  script(type='text/javascript',src='/vendor/js/jquery.form.js')
+  script(type='text/javascript',src='/vendor/js/bootstrap.min.js')
+  script(type='text/javascript',src='/vendor/js/bootstrap-slider.js')
+  script(type='text/javascript',src='/js/form-validators/purchaseValidator.js')
+  script(type='text/javascript',src='/js/views/purchase.js')
+  script(type='text/javascript',src='/vendor/js/noty/jquery.noty.js')
+  script(type='text/javascript',src='/vendor/js/noty/layouts/inline.js')
+  script(type='text/javascript',src='/vendor/js/noty/themes/default.js')
+

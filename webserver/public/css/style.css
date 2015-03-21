@@ -1,0 +1,668 @@
+/*
+ * Blue Area (BA) variables - all things in the blue area
+ * Grey Box (GB) variables - all things in the grey box area
+ * White Area (WA) colours
+ */
+/*
+ * Other
+ */
+.vv-dropdown-inline {
+  min-width: 0;
+}
+.vv-dropdown-inline>li {
+  padding: 3px 10px;
+  text-align: right;
+  cursor: pointer;
+}
+/*
+ * Main stuff
+ */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url("/vendor/fonts/ubuntu.woff") format('woff');
+}
+/* Always show scroll-bar */
+html {
+  overflow-y: scroll;
+}
+body {
+  font-family: ubuntu, helvetica, sans-serif;
+  font-size: 14px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #f5f5f5;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: ubuntu, helvetica, sans-serif;
+  color: #06a;
+  line-height: 1.3;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+h1 {
+  font-size: 35px;
+}
+h2 {
+  font-size: 30px;
+  color: #00002c;
+}
+h3 {
+  font-size: 18px;
+  font-style: italic;
+}
+h4 {
+  font-size: 16px;
+  font-style: italic;
+}
+hr.prettyLine {
+  border: 0;
+  height: 1px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,180,255,0.5), rgba(0,0,0,0));
+  background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,180,255,0.5), rgba(0,0,0,0));
+  background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,180,255,0.5), rgba(0,0,0,0));
+  background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,180,255,0.5), rgba(0,0,0,0));
+  background-image: linear-gradient(left, rgba(0,0,0,0), rgba(0,180,255,0.5), rgba(0,0,0,0));
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+/* Nav bar at top */
+.navbar-nav {
+  float: right;
+  margin: 0;
+}
+body>.navbar {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.navbar-inverse {
+  background-color: #00002c;
+  border-color: #00002c;
+}
+.nav>li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.navbar-nav>li>a {
+  padding-top: 8px;
+  padding-bottom: 10px;
+}
+.navbar-brand {
+  float: left;
+  padding: 15px 15px;
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: #eee;
+}
+.navbar>.container .navbar-brand {
+  margin-top: -8px;
+  margin-bottom: -200px;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+  border-radius: 8px;
+  color: #000;
+  background-color: #eee;
+}
+/* the sign-in button */
+.navbar-signin-btn {
+  border-radius: 8px;
+  background-color: #ed9c28;
+  border-color: #d58512;
+}
+/*
+ * Footer
+ */
+.footer {
+  clear: left;
+  color: #eee;
+  background: #00002c;
+}
+.footer .copyright p {
+  text-align: center;
+  color: #eee;
+  margin: 0;
+}
+.footer ul.footer-menu {
+  text-align: center;
+  list-style: disc;
+  margin: 10px 0;
+  -webkit-padding-start: 0px;
+}
+.footer ul.footer-menu li {
+  display: inline;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.footer a {
+  color: #eee;
+}
+.footer .hsep {
+  color: #eee;
+}
+/*
+ * Bootstrap overrides
+ */
+body > .navbar {
+  font-size: 15px;
+}
+.navbar {
+  border-radius: 0;
+}
+.input-group-addon {
+  min-width: 90px;
+  text-align: left;
+}
+.well {
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 0;
+  box-shadow: inset 0 0 0;
+  background-color: #fff;
+}
+/* Jumbotrons
+-------------------------------------------------- */
+/* Base class
+------------------------- */
+.jumbotron {
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  background-color: #07c;
+}
+.jumbotron h1 {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.jumbotron p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+.jumbotron .well {
+  background-color: #05a;
+  border: none;
+}
+.jumbotron ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.marketing .col-lg-4 {
+  text-align: center;
+}
+.home-phone {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*
+ * Table Stuff for lists of data
+ */
+table {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 0;
+}
+#tbl_label {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+}
+#tbl_data {
+  width: 200px;
+}
+#tbl_data_number {
+  width: 100px;
+  text-align: right;
+}
+/*
+ * Set the modal error colours
+ */
+#modal-form-errors li {
+  color: #d8000c;
+}
+/*
+ * support pages
+ */
+#print {
+  padding: 20px;
+}
+#four04 {
+  font-size: 2em;
+  font-family: 'Courier';
+  font-weight: bold;
+  line-height: 1.5em;
+  padding: 20px;
+}
+.btn-data-plan-name {
+  font-weight: bold;
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+.btn-data-plan-price {
+  font-weight: bold;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+.btn-data-plan-slider {
+  font-size: 14px;
+  border-right: none;
+  border-left: none;
+  border-top: 1px solid rgba(0,0,0,0.2);
+}
+.btn-data-plan:hover,
+.btn-data-plan:focus {
+  color: #06a;
+  background-color: #ddd;
+  background-image: none;
+}
+.btn-payment-method-name {
+  font-weight: bold;
+}
+.btn-payment-method-image {
+  font-weight: bold;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+.btn-payment-method:hover,
+.btn-payment-method:focus {
+  color: #06a;
+  background-color: #ddd;
+}
+.btn-payment-method {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.8em;
+  text-align: center;
+  color: #06a;
+  background-color: #f5f5f5;
+  border-color: #428bca;
+  padding: 0px;
+  line-height: 40px;
+  margin-bottom: 15px;
+}
+.btn-payment-method.active {
+  color: #fff;
+  background-color: #47a447;
+  border-color: #398439;
+}
+.btn-data-plan {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.8em;
+  text-align: center;
+  color: #06a;
+  background-color: #f5f5f5;
+  border-color: #428bca;
+  padding: 0px;
+  line-height: 40px;
+  margin-bottom: 15px;
+}
+.btn-data-plan.active {
+  color: #fff;
+  background-color: #47a447;
+  border-color: #398439;
+}
+.btn-data-plan > .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+button#btn-next {
+  width: 74px;
+}
+/* This is the login / sign-in buttons on the purchase screen */
+.ui-group-buttons .or {
+  position: relative;
+  float: left;
+  width: 0.3em;
+  height: 1.3em;
+  z-index: 3;
+  font-size: 12px;
+}
+.ui-group-buttons .or:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: 'or';
+  background-color: #5a5a5a;
+  margin-top: -0.1em;
+  margin-left: -0.9em;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.55;
+  color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 500px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-group-buttons .or:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 0.3em;
+  height: 2.84em;
+  background-color: rgba(0,0,0,0);
+  border-top: 0.6em solid #5a5a5a;
+  border-bottom: 0.6em solid #5a5a5a;
+}
+.ui-group-buttons .or.or-lg {
+  height: 1.3em;
+  font-size: 16px;
+}
+.ui-group-buttons .or.or-lg:after {
+  height: 2.85em;
+}
+.ui-group-buttons {
+  display: inline-block;
+  vertical-align: middle;
+}
+.ui-group-buttons:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.ui-group-buttons .btn {
+  float: left;
+  border-radius: 0;
+}
+.ui-group-buttons .btn:first-child {
+  margin-left: 0;
+  border-top-left-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+  padding-right: 15px;
+}
+.ui-group-buttons .btn:last-child {
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  padding-left: 15px;
+}
+#data-slider .slider-selection {
+  background: #8a8a8a;
+}
+.slider {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.slider-handle {
+  opacity: 1;
+}
+.panel {
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+.panel-body {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.panel-heading {
+  font-size: 18px;
+  font-weight: bold;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #07c;
+  border-color: #07c;
+}
+/*
+ * Bootstrap table overrides
+ */
+.table-pretty {
+  background-color: #fff;
+}
+.table-pretty > tbody > tr {
+  cursor: pointer;
+}
+.table-pretty > thead > tr > th {
+  color: #eee;
+  background-color: #07c;
+}
+.table-pretty>thead>tr>th,
+.table-pretty>tbody>tr>th,
+.table-pretty>tfoot>tr>th,
+.table-pretty>thead>tr>td,
+.table-pretty>tbody>tr>td,
+.table-pretty>tfoot>tr>td {
+  text-align: center;
+}
+/* Curvey corners on tables */
+.table-curved {
+  border-collapse: separate;
+}
+.table-curved {
+  border: solid #07c 1px;
+  border-left: 0px;
+}
+.table-curved td,
+.table-curved th,
+.table-curved tr {
+  border-left: 1px solid #07c;
+  border-top: 1px solid #07c;
+}
+.table-curved th {
+  border-top: none;
+  border-left: 1px solid #66a4cf;
+}
+.neat_list.list-group-item {
+  padding: 5px 5px;
+  background-color: rgba(255,255,255,0);
+  border: 0px solid #fff;
+}
+.neat_list.list-group-item .list-group-item-label {
+  float: left;
+  font-weight: bold;
+}
+/************************************************************************************************************************************************
+ ****
+ ****
+ ****
+ ****                                                             All about the images
+ ****
+ ****
+ ****
+ ************************************************************************************************************************************************/
+/* Main and home images */
+.icon-bitcoin {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+.icon-bitcoin-dims {
+  width: 126px;
+  height: 48px;
+  margin: 12px auto;
+}
+.icon-tick {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: -126px 0;
+  background-repeat: no-repeat;
+}
+.icon-tick-dims {
+  width: 64px;
+  height: 64px;
+}
+.icon-logo_header {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: 0 -64px;
+  background-repeat: no-repeat;
+}
+.icon-logo_header-dims {
+  width: 212px;
+  height: 32px;
+}
+.icon-fast {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: 0 -96px;
+  background-repeat: no-repeat;
+}
+.icon-fast-dims {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+.icon-secure {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: -64px -96px;
+  background-repeat: no-repeat;
+}
+.icon-secure-dims {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+.icon-reliable {
+  background-image: url("/img/sprites-home.min.png");
+  background-position: -128px -96px;
+  background-repeat: no-repeat;
+}
+.icon-reliable-dims {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+/* Feature images */
+@media only screen and (min-width: 992px) {
+  .icon-world_locations {
+    background-image: url("/img/sprites-features.min.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+  .icon-world_locations-dims {
+    width: 380px;
+    height: 220px;
+  }
+  .icon-cut {
+    background-image: url("/img/sprites-features.min.png");
+    background-position: 0 -220px;
+    background-repeat: no-repeat;
+  }
+  .icon-cut-dims {
+    width: 380px;
+    height: 220px;
+  }
+  .icon-coming_soon {
+    background-image: url("/img/sprites-features.min.png");
+    background-position: 0 -440px;
+    background-repeat: no-repeat;
+  }
+  .icon-coming_soon-dims {
+    width: 380px;
+    height: 220px;
+  }
+  .icon-coins {
+    background-image: url("/img/sprites-features.min.png");
+    background-position: 0 -660px;
+    background-repeat: no-repeat;
+  }
+  .icon-coins-dims {
+    width: 380px;
+    height: 220px;
+  }
+  .icon-very-secure {
+    background-image: url("/img/sprites-features.min.png");
+    background-position: 0 -880px;
+    background-repeat: no-repeat;
+  }
+  .icon-very-secure-dims {
+    width: 380px;
+    height: 220px;
+  }
+}
+/* Hide images for mobile browser */
+@media only screen and (max-width: 991px) {
+  .icon-world_locations {
+    display: none !important;
+  }
+  .icon-cut {
+    display: none !important;
+  }
+  .icon-coming_soon {
+    display: none !important;
+  }
+  .icon-coins {
+    display: none !important;
+  }
+  .icon-very-secure {
+    display: none !important;
+  }
+}
+/*
+ * Standard List
+ */
+ul.prettyList {
+  margin-left: -30px;
+}
+.prettyList > li:before {
+  content: ' ';
+  background: url("/img/sprites-home.min.png") no-repeat 0 -50px;
+  height: 9px;
+  width: 8px;
+  position: absolute;
+  left: -8px;
+  top: 13px;
+}
+.prettyList > li {
+  list-style: none;
+  padding: 8px 0 8px 30px;
+  position: relative;
+}
+.prettyList.tight > li:before {
+  top: 8px;
+}
+.prettyList.tight > li {
+  padding: 2px 0 2px 15px;
+}
+/*
+ * Standard List - but indented
+ */
+ul.prettyListIndent {
+  margin-left: 0px;
+}
+.prettyListIndent > li:before {
+  content: ' ';
+  background: url("/img/sprites-home.min.png") no-repeat 0 -50px;
+  height: 9px;
+  width: 8px;
+  position: absolute;
+  left: -8px;
+  top: 13px;
+}
+.prettyListIndent > li {
+  list-style: none;
+  padding: 8px 0 8px 30px;
+  position: relative;
+}

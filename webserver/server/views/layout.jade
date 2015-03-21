@@ -1,0 +1,115 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+//- Check if the user is logged in
+- var userSignedIn = false;
+- var userEmail = '';
+- var userId = '';
+- if (typeof(user) !== 'undefined' && user !== null) {
+-   userSignedIn = true;
+-   userEmail = user.email;
+-   userId = user.userId;
+-   accountActivated = user.isActive;
+- }
+- var dispTitle;
+- if (typeof(title) === 'undefined') {
+-     dispTitle = 'Swirl VPN - VPN optimized for mobile devices'
+- } else {
+-     dispTitle = title + ' - Swirl VPN';
+- }
+
+
+doctype html
+html(lang='en')
+  head
+    title= dispTitle
+    meta(http-equiv='Content-Type',content='text/html; charset=utf-8')
+    meta(name='viewport',content='width=device-width, initial-scale=1.0')
+    meta(name='description',content='Swirl VPN - VPN optimized for mobile devices.  Fast and secure web for iPhone and Android.')
+    meta(name='author',content='Swirl VPN Limited')
+    meta(name='keywords',content='VPN, VPN service, mobile VPN, slow connection, secure, android, iphone, smartphone')
+
+    //-
+    //- CSS
+    //-
+
+    //- Bootstrap core CSS
+    link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", rel="stylesheet")
+    //- Custom styles for this template
+    block extra_css
+    link(type='text/css', rel='stylesheet', href='/css/style.css')
+
+
+  body
+    .navbar.navbar-inverse(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/')
+            .icon.icon-logo_header.icon-logo_header-dims
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li: a(href='/') Home
+            li: a(href='/features') Features
+            li: a(href='/purchase') Purchase
+            li: a(href='/faq') FAQ
+            - if (userSignedIn) {
+              li: a(href='/account_details')  My Account
+              li: a.navbar-signin-btn#btn-logout(href='/logout') Log out
+            - } else {
+              li: a.navbar-signin-btn.btn-warning(href='/login') Login
+            - }
+
+    <!--[if lt IE 9]>
+    p(style='background-color:#e55;padding:40px;',align:center) This website does not work with Internet Explorer 8 or earlier.  Please upgrade your browser.
+    <![endif]-->
+
+    //- The content
+    block content
+
+    //- & the footer
+    .footer
+      .container
+        br
+        ul.footer-menu
+          li
+            a(href='/sitemap') Site Map
+          li.hsep •
+          li
+            a(href='/policies/tos') Terms and Conditions
+          li.hsep •
+          li
+            a(href='/policies/privacy') Privacy
+          li.hsep •
+          li
+            a(href='/contact') Contact
+        br
+        .copyright
+          p
+            i
+              | © 2013 Swirl VPN Ltd. All rights reserved.
+        br
+
+    //- These scripts are required for the navbar
+    script(type='text/javascript',src='//code.jquery.com/jquery-2.0.3.min.js')
+    script(type='text/javascript',src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
+    script(type='text/javascript',src='/js/common.js')
+
+    block scripts

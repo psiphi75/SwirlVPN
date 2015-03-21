@@ -1,0 +1,43 @@
+
+
+# Server stuff
+dev tun
+proto udp
+server 10.10.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+max-clients 250
+port 1196
+
+duplicate-cn
+
+#fast-io
+
+#Encryption (fastest="BF-CBC")
+cipher BF-CBC
+
+# Compress data to save bandwidth (disable because proxy does compression)
+comp-lzo yes
+
+# Note: a larger timeout is better, but some routers only manage 60 timeouts
+keepalive 10 60
+
+# Keys and certificates
+ca       /etc/openvpn/keys-vpc-connection/ca.crt
+cert     /etc/openvpn/keys-vpc-connection/master.crt
+key      /etc/openvpn/keys-vpc-connection/master.key
+dh       /etc/openvpn/keys-vpc-connection/dh1024.pem
+tls-auth /etc/openvpn/keys-vpc-connection/ta.key 0
+
+persist-key
+persist-tun
+
+# Don't run as root
+#user simon
+#group simon
+
+# Messages to output, verbosity and consective messages
+verb 3
+mute 3
+syslog openvpn-vpc-master
+#log-append /var/log/server/openvpn/vvmaster-openvpn.log
+

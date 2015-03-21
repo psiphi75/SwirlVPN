@@ -1,0 +1,44 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+block content
+  - msg = (typeof(msg) === 'undefined') ? '' : msg;
+  - link = (typeof(link) === 'undefined') ? '' : link;
+
+  br
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        .well
+          form(role='form',method='post')
+
+            //- Header
+            h1= title
+            p= msg
+
+            //- The message
+            - if (link) {
+            p <a href= #{link} >Or you can click here<a>
+
+            //- The redirect
+            script(type='text/javascript').
+              setTimeout(function(){#{'location.href = \'' + link + '\''}}, 5000)
+            - }
+
+            br

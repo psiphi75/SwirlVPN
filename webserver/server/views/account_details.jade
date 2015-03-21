@@ -1,0 +1,196 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include mixins/commonMixins
+
+block content
+
+  .jumbotron
+    .container
+      h1.col-md-10.col-md-offset-1 Account details
+
+
+  .container
+    .row
+      .col-md-12
+
+        //- The user profile data
+        h2 User profile
+        table
+          tbody
+            tr
+              td#tbl_label email:
+              td#tbl_data #{userEmail}
+
+        .col-md-2.col-md-offset-10
+          button.btn.btn-warning(type='button', onClick='parent.location="/account_update"') Edit Profile
+
+    //- Show the user's data consumption
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2 Usage
+        p
+            | Your data consumption is shown below.  The purchases are listed below, click on one to get
+            | more details.  You can purchase more as well.
+        table
+          tbody
+            tr
+              td#tbl_label Data available:
+              td#tbl_data_number  #{userDataAvail} MB
+            tr
+              td#tbl_label Total used:
+              td#tbl_data_number  #{userDataUsed} MB
+            tr
+              td
+              td
+            tr
+              td#tbl_label Percent of downloaded data saved:
+              td#tbl_data_number  #{userDataSavingsPercent}
+
+        form
+          input#reminderYesNo(type='checkbox')
+          | &nbsp;&nbsp;Email me when I have less than&nbsp;&nbsp;
+
+          .btn-group
+              button.btn.btn-default.btn-sm#reminderValue(type='button') #{remindAt / 1024 / 1024} MB
+                button.btn.btn-default.btn-sm.dropdown-toggle(type='button', data-toggle='dropdown')
+                  span.caret
+                  span.sr-only Toggle Dropdown
+                ul.dropdown-menu.vv-dropdown-inline(role='menu')
+                  - each option in reminderOptions
+                    li #{option.str}
+
+          | &nbsp;&nbsp;of data left.
+          div(style='float:right')#vv-save-notification-box
+
+
+
+    //- The data plan
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2 Data plan
+        p The data plans you purchase appear in the table below.
+        mixin showPrettyTable(purchaseTable,true)
+
+        .col-md-2.col-md-offset-10
+          button.btn.btn-warning(type='button', onClick='parent.location="/purchase"') Buy More
+
+
+    //- Download links
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2 Downloads
+        p
+            | The configuration files for the region that you wish to connect to can be downloaded below.
+            | <b>These files are unique to your Swirl VPN account</b>, so do not share them with others.
+
+        mixin showDownloadButtons
+
+        form
+          input#account-details-dl-as-email(type='checkbox')
+          | &nbsp;&nbsp;Send as email instead of download
+
+
+    //- Instructions
+    hr.prettyLine
+    .row
+      .col-md-12
+        h2   Connection Instructions
+        p Below are the links to the instructions how to connect for different operating systems:
+        ul
+          li
+            a(alt='Android documentation', href='/documentation/vpn_for_android') for Android
+          li
+            a(alt='iPhone documentation', href='/documentation/vpn_for_iphone') for iPhone
+          li
+            a(alt='Window documentation', href='/documentation/vpn_for_windows') for Windows
+          li
+            a(alt='Linux documentation', href='/documentation/vpn_for_linux') for Linux
+
+  br
+  br
+  include modals/display-data.jade
+
+block scripts
+  script(type='text/javascript',src='/vendor/js/noty/jquery.noty.js')
+  script(type='text/javascript',src='/vendor/js/noty/layouts/inline.js')
+  script(type='text/javascript',src='/vendor/js/noty/themes/default.js')
+  script(type='text/javascript',src='/js/views/purchase-table.js')
+  script.
+
+    var remindMeValue = #{remindMe};
+    $('#reminderYesNo').prop('checked', remindMeValue);
+
+    var reminderValueBefore = $('#reminderValue').text().trim();
+
+    /* Listen to the menu change.  When clicked we automatically save */
+    $(".vv-dropdown-inline li").click(function(event) {
+
+        /* Set the new value */
+        $('#reminderValue').text(event.target.innerText)
+
+        var newReminderValue = $('#reminderValue').text().trim();
+        if (reminderValueBefore === newReminderValue) {
+            /* No change made */
+            return;
+        }
+        /* Reset the before values */
+        reminderValueBefore = $('#reminderValue').text().trim();
+        saveReminderChange();
+    });
+
+    /* Listen for the checkbox change */
+    $("#reminderYesNo").change(function(event) {
+        saveReminderChange();
+    });
+
+    /* When a change occurs, save it to the database. */
+    function saveReminderChange() {
+
+        var reminderYesNo = $('#reminderYesNo').is(':checked');
+        var reminderValue = $('#reminderValue').text().trim();
+
+
+        $.ajax({
+          type: "POST",
+          url: '/account_update_reminder',
+          data: {
+              remindMe: reminderYesNo,
+              remindAt: reminderValue
+          },
+          success: function() {
+                var n = $('#vv-save-notification-box').noty({
+                    text: 'Your change has been saved.',
+                    timeout: 5000,
+                    type: 'success'
+                });
+          },
+          dataType: 'text'
+        }).fail(function() {
+            var n = $('#vv-save-notification-box').noty({
+                    text: 'There was an error saving your change.',
+                    timeout: 5000,
+                    type: 'error'
+                  });
+        });
+
+    }

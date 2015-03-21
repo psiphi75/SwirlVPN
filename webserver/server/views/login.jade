@@ -1,0 +1,73 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+block content
+
+  br
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        .well
+          form#login-form(role='form',method='post')
+
+            //- Header
+            h1 Login
+            p Please login to your account
+            br
+
+            //- Email input
+            .form-group
+              .input-group
+                span.input-group-addon Email
+                input#email-tf.form-control(type='text',name='email',placeholder='Email')
+
+            //- Password
+            .form-group
+              .input-group
+                span.input-group-addon Password
+                input#password-tf.form-control(type='password',name='password',placeholder='Password')
+
+            //- Remember checkbox
+            .form-group
+              .checkbox
+                label Remember Me
+                  input(type='checkbox',name='remember-me',checked='checked')
+
+            //- Submit button
+            button.btn.btn-primary(type='submit') Login
+
+            //- Reset password and Create Account links
+            br
+            br
+            .btm-links
+              p
+                a#forgot-password(href='#') Forgot Your Password?
+              p
+                a(href='/signup') Create An Account
+
+
+  include modals/alert
+  include modals/lost-password
+
+block scripts
+  script(type='text/javascript',src='/vendor/js/jquery.form.js')
+  script(type='text/javascript',src='/js/views/login.js')
+  script(type='text/javascript',src='/js/controllers/loginController.js')
+  script(type='text/javascript',src='/js/form-validators/loginValidator.js')
+  script(type='text/javascript',src='/js/form-validators/emailValidator.js')

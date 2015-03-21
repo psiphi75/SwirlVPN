@@ -1,0 +1,72 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include mixins/commonMixins
+
+block content
+
+  - var bitpayInvoiceURL = 'https://bitpay.com/invoice?id=' + vendorPaymentId;
+
+  br
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        .well
+          h1 Confirm Details
+
+          //- Purchase details
+          h2 Purchase Details
+
+          .row.col-md-12
+            ul.list-group.col-md-6
+              mixin showNeatListItem('Plan', paymentDetailsPlan)
+              mixin showNeatListItem('Data to purchase', paymentDetailsBytesPurchasedHR)
+              mixin showNeatListItem('Price (USD)', paymentDetailsValueUSDHR)
+              mixin showNeatListItem('Price (BTC)', paymentDetailsValueCurrencyHR)
+
+          //- The bitpay url
+          h2 Bitpay payment window:
+
+          ul
+            li You require a bitcoin wallet and software / app to send bitcoins.
+            li Bitcoin payments take around 10 minutes to be confirmed.
+            li Complete the payment in the secure frame below.
+            <!--[if IE]>
+            li Then click <a href='/account_details#PurchaseConfirmation'>here</a> once you have made the pamyment.
+            <![endif]-->
+
+          //- This is required for bitpay API
+          span#s1(style='display: none;')
+
+          iframe(src= bitpayInvoiceURL, style='width: 100%; height: 700px; border:2px solid #339')
+          script(language='javascript').
+            function isIE () {
+              var myNav = navigator.userAgent.toLowerCase();
+              return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+            }
+            if ( ! isIE()) {
+              window.addEventListener("message", function(event) {
+
+                /* Once the purchase is complete redirect to the main page */
+                if (event.data.status === 'paid' || event.data.status === 'confirmed') {
+                    window.top.location = '/account_details#PurchaseConfirmation'
+                }
+                document.getElementById("s1").innerHTML=event.data.status;
+              }, false);
+            }

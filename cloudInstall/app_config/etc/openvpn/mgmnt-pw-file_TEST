@@ -1,0 +1,2 @@
+CONFIG_TODO: This file needs a password set, this needs to be same as what is stated in SwirlVPN/common/config.js:
+ ovpnServer.ovpnProcess.managementInterface.password

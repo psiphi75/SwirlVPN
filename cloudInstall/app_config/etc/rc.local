@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# This replaces the default /etc/rc.local file.  This script will start the server startup script.
+
+# Run all the commands as the 'ubuntu' user, otherwise our server will be running as root
+su ubuntu << "EOF"
+	DIR="/home/ubuntu/SwirlVPN"
+	CMD="start_server.sh"
+
+	cd ${DIR}
+	./${CMD} &>> /var/log/server/start_server.log &
+EOF
+
+exit 0

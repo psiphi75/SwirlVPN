@@ -1,0 +1,72 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+.container
+  br
+  .row
+    .col-md-6.col-md-offset-3
+      .well
+        form#account-form(role='form',method='post')
+
+          //- Header
+          h1= header
+          p=  blurb
+          hr
+
+          //- Email input
+          .form-group#email-cg
+            .input-group
+              span.input-group-addon Email
+              input#email-tf.form-control(type='text',name='email',placeholder= userEmail)
+
+          //- Password
+          .form-group#password-cg
+            .input-group
+              span.input-group-addon Password
+              input#password-tf.form-control(type='password',name='password',placeholder='Password')
+
+          //- Terms and conditions
+          - if (showSignUpBlurb) {
+            p By clicking Submit, <b>you agree to</b>:
+            ul
+              li
+                b
+                  a(href='/policies/tos') Terms and Conditions
+              li
+                b
+                  a(href='/policies/privacy') Privacy Policy
+
+            p And we need to make sure you're human:
+            #recaptcha_div
+          - }
+
+
+
+          //- Submit button
+          hr
+          .container
+            .row
+              button#account-form-btn.btn.btn-primary(type='submit')= btnSubmitLabel
+
+              - if (btnSubmitLabel === 'Update') {
+                button#account-form-btn-delete.btn.btn-danger.col-md-offset-1(type='button') Delete
+              - }
+
+
+//- display form errors in a custom modal window //
+
+include modals/form-errors

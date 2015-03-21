@@ -1,0 +1,61 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+extends layout
+
+block content
+
+  br
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        .well
+          #contact-form-container
+            form#contact-form(role='form',method='post')
+
+              //- Heading
+              h1 Contact Us
+              p We would like your comments and suggestions.
+
+              //- Email input
+              .form-group#email-cg
+                .input-group
+                   span.input-group-addon Email
+                   input#email-tf.form-control(type='text',name='email',placeholder='Your email',value=userEmail)
+
+              //- Subject dropdown
+              .form-group#subject-cg
+                select.form-control#subject-tf(name='subject')
+                  option(value='---') -- Please select a subject --
+                  option(value='problem') I have a problem
+                  option(value='suggestion') I have a suggestion
+                  option(value='other') Something else
+
+              //- Comments field
+              .form-group#comment-cg
+                textarea#comment-tf.form-control(type='text',rows='3',name='comment',placeholder='Comment')
+
+              button.btn.btn-primary#contact-form-btn(type='submit') Submit
+
+  include modals/form-errors
+  include modals/alert
+
+
+
+block scripts
+  script(type='text/javascript',src='/vendor/js/jquery.form.js')
+  script(type='text/javascript',src='/js/views/contact.js')
+  script(type='text/javascript',src='/js/form-validators/contactValidator.js')

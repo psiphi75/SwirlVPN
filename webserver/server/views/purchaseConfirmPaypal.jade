@@ -1,0 +1,42 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include mixins/commonMixins
+
+block content
+
+  br
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        .well
+          h1 Purchase Complete
+
+          //- Purchase details
+          h2 Purchase Details
+
+          .row.col-md-12
+            ul.list-group.col-md-6
+              mixin showNeatListItem('Plan', paymentDetailsPlan)
+              mixin showNeatListItem('Data to purchase', paymentDetailsBytesPurchasedHR)
+              mixin showNeatListItem('Price (USD)', paymentDetailsValueUSDHR)
+
+          //- The bitpay url
+          h2 Thank you for your payment!!!
+

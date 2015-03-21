@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+###############################################################################
+#
+#    SwirlVPN is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    SwirlVPN is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
+
+####################################################################
+# This script will connect to the localMaster server and ensure    #
+# that the user can login.                                         #
+####################################################################
+
+#CONFIG_TODO: See config.js, this must be the same as ovpnServer:webservice:key.
+KEY="#### Webservice secret key ####"
+HOST=`hostname`
+
+source /home/ubuntu/this_server_env_vars.sh
+
+if [ -z ${bytes_received} ]; then bytes_received=0; fi
+if [ -z ${bytes_sent} ];     then bytes_sent=0;     fi
+if [ -z ${time_unix} ];      then time_unix=0;      fi
+
+POST="{\
+    \"key\"             :\"${KEY}\",\
+    \"userId\"          :\"${common_name}\",\
+    \"bytesFromClient\" :  ${bytes_received},\
+    \"bytesToClient\"   :  ${bytes_sent},\
+    \"networkDev\"      :\"${dev}\",\
+    \"scriptType\"      :\"${script_type}\",\
+    \"signal\"          :\"${signal}\",\
+    \"timeUnix\"        :  ${time_unix},\
+    \"assignedIP\"      :\"${ifconfig_pool_remote_ip}\",\
+    \"clientIP\"        :\"${trusted_ip}\",\
+    \"clientIPv6\"      :\"${trusted_ip6}\",\
+    \"server\"          : {\
+        \"hostname\"        : \"${VV_REGION} (${HOST})\"
+    }\
+}"
+
+SERVER="http://10.10.0.1:8881/vpn-connections"
+
+# bytes_received - Total number of bytes received from client during VPN session.
+# bytes_sent - Total number of bytes sent to client during VPN session.
+# common_name - the name of the connected user.
+# dev - The actual name of the TUN/TAP device.
+# script_type - Type of script, can be: up, down, ipchange, route-up, tls-verify,  auth-
+#               user-pass-verify, client-connect, client-disconnect, or learn-address.
+# signal - The reason for exit, can be one of sigusr1, sighup, sigterm, sigint, inac‐
+#               tive (controlled by --inactive option), ping-exit (controlled by --ping-exit  option),
+#               ping-restart (controlled by --ping-restart option), connection-reset (triggered on TCP
+#               connection reset), error, or unknown (unknown signal).
+# time_ascii - Client  connection timestamp, formatted as a human-readable time string.
+# time_duration - The duration (in seconds) of the client session which is now disconnecting.
+# trusted_ip (or trusted_ip6): Actual IP  address  of client which has been authenticated.
+# untrusted_ip (or untrusted_ip6): Actual IP address of client which has not been  authenticated
+#TODO: Remove for production
+echo -n "\n`date` POST=$POST\n" >> /var/log/server/openvpn/ovpn_script_log.txt
+
+# Poll the localMaster to see if the user
+# is allowed to login.
+curl -ss -f -d "$POST" -H "Content-Type: application/json" ${SERVER} > /dev/null
+
+# Exit with the return code of wget
+exit $?

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Here we reload iptables at boot time.
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables-restore < /etc/iptables.rules
+exit 0

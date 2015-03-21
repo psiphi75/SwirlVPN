@@ -1,0 +1,72 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends ../layout
+
+include ../mixins/commonMixins
+
+block content
+
+  mixin showJumbotron("Swirl VPN for Linux", "These instructions will help you get connected to Swirl VPN for Linux operating systems.")
+
+  .container
+    .row
+      .col-md-12
+          ol
+
+            mixin docsCreateAccount_viaDownload
+
+            br
+            h3
+              li#li_head Install OpenVPN
+            p If your Linux distribution already has OpenVPN installed, you can skip this step.  Instructions for installing
+             | OpenVPN for the most popular Linux Distributions are as follows:
+            ul
+              li Ubuntu / Linux Mint / Debian based distributions
+                pre sudo apt-get install openvpn
+              li Redhat / CentOS / openSUSE / RPM based distributions
+                pre sudo yum -y install openvpn openssl
+            p <b>Note:</b> There are many ways in Linux to connect to a VPN service.  We have opted for the most simple instructions that
+              | will work without any problems.
+
+            br
+            h3
+              li#li_head Connect to Swirl VPN
+            p To connect to Swirl VPN run the following commond from a console:
+            pre sudo openvpn --config SwirlVPN-Region.ovpn
+            p Where SwirlVPN-Region.ovpn is the name of the Swirl VPN configuration file.  On successful connection you will see the
+             | following text:
+            pre Initialization Sequence Completed
+            p <b>Note:</b> You must keep the terminal open.  When you close the terminal or exit OpenVPN the connection will stop.
+            p
+              | Once you are connected you should ensure that your IP address is actually changed.  Tap the link
+              | below and you will see that your location is the same as the Swirl VPN region you selected.
+            a(href='http://whatismyipaddress.com/')
+              | http://whatismyipaddress.com/
+
+            br
+            br
+            h3
+              li#li_head Disconnecting
+            p
+              | To disconnect from Swirl VPN, close the terminal where you started OpenVPN or hit the [CTRL]+C key in the
+              | terminal to stop OpenVPN.
+
+            br
+
+
+  mixin creativeCommonsLicense

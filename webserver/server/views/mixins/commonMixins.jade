@@ -1,0 +1,154 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+
+//-
+//- Used to create the download buttons
+//- Note: that 'regions' and 'regionDescs' need to be passed by app
+//-
+mixin showDownloadButtons
+  //- This script will create an URL in the format and go there: "/getOvpnConf?region=Sydney&as_email=false"
+  script(type='text/javascript').
+    function gotoOvpnUrl(regionName) {
+      var url;
+      url  = '/getOvpnConf?region=' + regionName;
+      url += '&as_email=' + document.getElementById('account-details-dl-as-email').checked;
+      parent.location = url;
+    }
+  - var regionName, regionDesc;
+  - var i;
+  - for (i=0; i < regions.length; i++) {
+  -     regionName = regions[i];
+  -     regionDesc = regionDescs[i];
+        mixin btnDownload(regionName, regionDesc)
+  - }
+
+//-
+//- Used to create the download buttons
+//-
+mixin btnDownload(regionName, regionDesc)
+  div.btn-container-left
+    button.btn.btn-primary(style='width:200px;margin:5px',type='button',onClick='gotoOvpnUrl("' +  regionName + '")') #{regionDesc}
+
+//-
+//- Create account button
+//-   @param txt - text to include to the right of the button
+mixin createAccount(txt)
+  .create-account
+    a.btn.btn-success.btn-large(href='/signup') Create Account
+
+
+//-
+//- Documentation to create a Swirl VPN account
+//-
+
+
+mixin docsCreateAccount
+  h3
+    li#li_head Create a Swirl VPN account:
+  p Click here to create an account. Follow the instructions and sign into Swirl VPN.
+  br
+  a.btn.btn-success.btn-lg(onclick="location.href='/signup'") Sign up for free
+  br
+  br
+
+//- This is for Android, Linux, Windows
+mixin docsCreateAccount_viaEmail
+  mixin docsCreateAccount
+
+  #doc-email-SwirlVPN-file
+  h3
+    li#li_head Get the Swirl VPN configuration file via email:
+  p Click on <a href='/account_details'>"My Account"</a>. In the "Downloads" section tick the 'Send as email instead of download' box,
+    | then click on the region you want to connect to.  The Swirl VPN configuration file will be emailed to you.
+    | <em>Important</em>: you should delete this file from your email when you are done cofinguring Swirl VPN.
+
+//- This is for iOS, since we can't easily download files to the filesystem
+mixin docsCreateAccount_viaDownload
+  mixin docsCreateAccount
+
+  #doc-download-SwirlVPN-file
+  h3
+    li#li_head Download the Swirl VPN configuration file:
+  p Click on <a href='/account_details'>"My Account"</a>, in the "Downloads" section click on the region you
+    | want to connect to.  The Swirl VPN configuration file will begin to download.
+
+
+//-
+//- The creative commons license we use.
+//-
+mixin creativeCommonsLicense
+  .container
+    .row
+      .col-md-12
+          //.well
+          h2 License for this documentation
+          a(rel="license", href="http://creativecommons.org/licenses/by-sa/3.0/")
+            img(alt="Creative Commons License", style="border-width:0", src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png")
+          p
+          p The instructions on this page, written by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.swirlvpn.com" property="cc:attributionName" rel="cc:attributionURL">Swirl VPN</a>
+           | is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+          br
+
+
+//-
+//- Shows a pretty table
+//-
+//- tableData - a javascript object
+//- passJSON - if true, this will pass the tableData.data object as a script to the rendered html
+mixin showPrettyTable(tableData, passJSON)
+  .table-responsive
+    table.table.table-hover.table-curved.table-pretty
+
+      //- Header
+      thead
+        tr.colhead
+          - var fields = [];
+          - each header in tableData.headers
+            - fields.push(header.fieldName);
+            th(title= header.caption)= header.title
+
+      //- Body - rows
+      tbody
+        - each rowData,i in tableData.data
+          tr.clickableRow(id= i, href='#')
+            - each fieldName in fields
+              td= rowData[fieldName]
+
+      //- Send the JSON data to the browser.
+      - if (passJSON === true) {
+        - var objJSON = 'var tableData = ' + JSON.stringify(tableData.data) + ';';
+        script!= objJSON
+      - }
+
+
+mixin showNeatListItem(label, value)
+  li.neat_list.list-group-item
+    .col-md-7
+      .list-group-item-label= label + ':'
+    .col-md-offset-7
+      .list-group-item-value= value
+
+
+//-
+//- Shows the Jumbtron
+//-
+mixin showJumbotron(title, blurb)
+  .jumbotron
+    .container
+      h1.col-md-10.col-md-offset-1=  title
+      p.col-md-10.col-md-offset-1=   blurb

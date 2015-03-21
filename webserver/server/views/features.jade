@@ -1,0 +1,110 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+include ./mixins/commonMixins
+
+block content
+
+  mixin showJumbotron("Features", "We provide affordable, fast and secure Internet that's optimized for mobile devices and slower network connections.")
+
+  .container
+
+    //- Double Bandwidth
+    .row
+      .col-md-6#DoubleBandwidth
+        h2 Cut Your Data Usage
+        p We employ advanced compression <a href='/faq#how-does-it-work'>technology</a> :
+        ul.prettyList
+          li This cuts your mobile data consumption in <b>half</b>
+          li Pages load on average <b>2x faster</b> when using a 3G network
+          li Loading less data means you <b>use less power</b>
+          li Reduces your mobile data bill whether at home or roaming
+
+      .col-md-6
+        .icon.icon-cut.icon-cut-dims
+
+
+    //- Secure
+    hr.prettyLine
+    .row
+      .col-md-6
+       .icon.icon-very-secure.icon-very-secure-dims
+
+      .col-md-6#Secure
+        h2 Very Secure
+        p Swirl VPN uses <a href='http://wikipedia.org/wiki/OpenVPN'>OpenVPN</a> to create a highly secure private tunnel between your device and our servers:
+        ul.prettyList
+          li All Internet traffic is <b>securely encrypted</b>, for all apps
+          li We use the very secure <b>1024-bit Open SSL</b> encryption standard
+          li It works behind firewalls, whether you are at home or work
+          li You can use <b>all Internet protocols</b> (torrents, browsing, etc)
+
+
+    //- Global
+    hr.prettyLine
+    .row
+      .col-md-6#Global
+        h2 Global
+        p We have servers around the world:
+        ul.prettyList.tight
+          li St Gallen,&nbsp;&nbsp;<b>Switzerland</b>,&nbsp;&nbsp;Europe (primary servers)
+          li Palo Alto,&nbsp;&nbsp;California,&nbsp;&nbsp;<b>USA</b>
+          li Northern Virginia,&nbsp;&nbsp;<b>USA</b>
+          li Dublin,&nbsp;&nbsp;<b>Ireland</b>,&nbsp;&nbsp;Europe
+          li Sydney,&nbsp;&nbsp;<b>Australia</b>
+          li Singapore,&nbsp;&nbsp;<b>Singapore</b>
+          li São Paulo,&nbsp;&nbsp;<b>Brazil</b>
+
+      .col-md-6
+       .icon.icon-world_locations.icon-world_locations-dims
+
+
+    //- Different approach
+    hr.prettyLine
+    .row
+      .col-md-6
+        .icon.icon-coins.icon-coins-dims
+
+      .col-md-6
+        h2#DifferentApproach A Different Approach
+        p We are a bit different - in a good way:
+        ul.prettyList
+          li You get a <b>free trial with free data</b> when you sign-up
+          li You pay for what you use - <b>no monthly fees</b>
+          li Pay using credit card, BitCoin, or Google in-app payments
+          li Swirl VPN works on all major devices and operating systems
+          li Use your account on any device and <b>switch between any server</b>
+
+
+    //- Coming Soon
+    hr.prettyLine
+    .row
+      .col-md-6#ComingSoon
+        h2 Coming soon
+        p We have many ideas and features that we are working on:
+        ul.prettyList
+          li Improved Android and iOS Apps that don't require configuration
+          li Advancing privacy features, like Ad-blocking
+          li More global servers
+          li We would like to hear what you want, <a href='/contact'>contact us</a>!
+
+      .col-md-1
+        .icon.icon-coming_soon.icon-coming_soon-dims
+
+    br

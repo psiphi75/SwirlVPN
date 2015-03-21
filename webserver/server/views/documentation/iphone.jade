@@ -1,0 +1,99 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+
+extends ../layout
+
+include ../mixins/commonMixins
+
+block content
+
+  mixin showJumbotron("Swirl VPN on iOS", "These instructions will help you get connected to Swirl VPN for iOS, namely iPhone and iPad.")
+
+  .container
+    .row
+      .col-md-12
+          ol
+            mixin docsCreateAccount_viaEmail
+
+            br
+            h3
+              li#li_head Install "OpenVPN Connect"
+            p Download the "OpenVPN Connect" App from iTunes.  We recommend you use the "OpenVPN Connect" app that is available on
+             | iTunes.  However, you may use any other OpenVPN client app.  Click the iTunes button below:
+            a(href="https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8&uo=4",target="itunes_store", style="display:block;margin-left:auto;margin-right:auto;margin-top:15px;margin-bottom:15px;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_appstore-lrg.svg);}")
+
+            p <em>Disclaimer:</em> Swirl VPN is not associated with "OpenVPN Connect".
+
+
+            br
+            h3
+              li#li_head Open the <em>SwirlVPN-Region.ovpn</em> file
+            p
+             | Go to your email and open the attachment that you created in the <a href='#doc-email-SwirlVPN-file'>Get the Swirl VPN configuration
+             | file via email</a> section.  This action will start the "OpenVPN Connect" App.
+            p
+             | Tap the plus, <img id='inline' alt='OpenVPN Connect add icon' src='/img/ins/ios_2_add.png'>, button.  This will
+             | add the Swirl VPN configuration to 'OpenVPN Connect'.
+            img(alt='OpenVPN Connect - first screen', src='/img/ins/ios_2.jpg')
+
+            p
+             | This will open the Swirl VPN configuration file.  You will see the screen below.  Now slide the slider to "On",
+             | the VPN session will start.
+            img(alt='OpenVPN Connect - start connection', src='/img/ins/ios_3.jpg')
+            p
+             | The message "Allow OpenVPN to enable VPN connection?" will appear, tap "Yes".
+            img(alt='OpenVPN Connect - start connection', src='/img/ins/ios_4.jpg')
+
+            br
+
+            p
+             | You will see the connection initiating.
+            img(alt='OpenVPN Connect - start connection', src='/img/ins/ios_5.png')
+
+            br
+            h3
+              li#li_head Connection established
+            p
+             | Once connected you will see the following screen.  Note that you should always see the
+             | <img id='inline' alt='VPN connection is active icon' src='/img/ins/ios_6_connected.png'> icon at the top of your iPhone / iPad,
+             | this icon means the VPN connection is active.
+            p
+             | Once you are connected you should ensure that your IP address is actually changed.  Tap the link
+             | below and you will see that your location is the same as the Swirl VPN region you selected.
+            a(href='http://whatismyipaddress.com/')
+              | http://whatismyipaddress.com/
+
+            p
+             | The connection screen:
+            img(alt='OpenVPN Connect - connected', src='/img/ins/ios_6.jpg')
+
+            br
+            br
+            h3
+              li#li_head Disconnecting
+            p
+              | To terminate the connection to Swirl VPN, return to "OpenVPN Connect" and slide the switch under "Connected" to "OFF".  This will
+              | disconnect you from the Swirl VPN service.  You can restart the connection at any time.
+            img(alt='OpenVPN Connect - start connection', src='/img/ins/ios_3.jpg')
+
+            br
+
+
+  br
+  br
+  mixin creativeCommonsLicense

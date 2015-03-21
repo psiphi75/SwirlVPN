@@ -1,0 +1,4 @@
+#region,server,vendor
+ch ch1.swirlvpn.com softronics
+au au1.swirlvpn.com AWS
+ca ca1.swirlvpn.com AWS

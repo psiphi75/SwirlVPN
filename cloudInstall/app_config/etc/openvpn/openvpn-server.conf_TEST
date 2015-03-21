@@ -1,0 +1,60 @@
+
+
+# Server stuff
+dev tun
+proto udp
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+push "redirect-gateway def1"
+# TODO: Change this to 10.8.0.1
+push "dhcp-option DNS 8.8.8.8"
+max-clients 250
+
+# Allow multiple clients to connect at once
+duplicate-cn
+
+fast-io
+
+#Encryption (fastest="BF-CBC")
+# TODO: is there a faster but lower security cypher?
+cipher BF-CBC
+
+# Compress data to save bandwidth (disable because proxy does compression)
+comp-lzo no
+
+# Note: a larger timeout is better, but some routers only manage 60 timeouts
+keepalive 10 60
+
+# Keys and certificates
+ca          /etc/openvpn/keys-swirlvpn-connection/ca.crt
+cert        /etc/openvpn/keys-swirlvpn-connection/server.crt
+key         /etc/openvpn/keys-swirlvpn-connection/server.key
+dh          /etc/openvpn/keys-swirlvpn-connection/dh1024.pem
+tls-auth    /etc/openvpn/keys-swirlvpn-connection/ta.key      0
+
+persist-key
+persist-tun
+
+# Don't run as root
+user openvpn
+group openvpn
+
+# Messages to output, verbosity and consective messages
+verb 3
+mute 5
+
+syslog openvpn-server
+#log-append /var/log/server/openvpn/openvpn.log
+
+
+status /var/log/server/openvpn/status.log 3
+status-version 2
+
+# Enable telnet.  Required to boot users.
+management 127.0.0.1 9091 /etc/openvpn/mgmnt-pw-file
+
+# Scripts which we run on connection / disconnection, always the same script,
+# the environment variables determine what behaviour the script should exihibit.
+client-connect    /etc/openvpn/scripts/ovpn.sh
+client-disconnect /etc/openvpn/scripts/ovpn.sh
+

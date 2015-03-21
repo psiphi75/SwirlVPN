@@ -1,0 +1,48 @@
+//- *****************************************************************************
+//- *                                                                           *
+//- *    SwirlVPN is free software: you can redistribute it and/or modify       *
+//- *    it under the terms of the GNU General Public License as published by   *
+//- *    the Free Software Foundation, either version 3 of the License, or      *
+//- *    (at your option) any later version.                                    *
+//- *                                                                           *
+//- *    SwirlVPN is distributed in the hope that it will be useful,            *
+//- *    but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+//- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+//- *    GNU General Public License for more details.                           *
+//- *                                                                           *
+//- *    You should have received a copy of the GNU General Public License      *
+//- *    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.      *
+//- *                                                                           *
+//- *****************************************************************************
+
+extends layout
+
+block content
+  h1 User List
+  p Number of users: #{userList.length}
+  table(border="1", style="table-layout: fixed; width: 100%")
+    tbody
+      tr
+        td(style="width:150px") email
+        td Activation Date
+        td Creation Date
+        td Last Login Date
+        td invalid PW Count
+        td(style="width:50px") isActive
+        td Bytes Purchased
+        td Bytes To Client
+        td Bytes From Client
+
+      each user in userList
+        tr
+          td(style="width:150px; word-wrap:break-word", )
+            a(href='/printUserDetails?#{user.emailQuery}') #{user.email}
+          td #{user.activationDateFmt}
+          td #{user.dateCreatedFmt}
+          td #{user.dateLastLoginFmt}
+          td #{user.invalidPWCount}
+          td #{user.isActive}
+          td #{user.bytesPurchasedHR}
+          td #{user.bytesToClientHR}
+          td #{user.bytesFromClientHR}
+
