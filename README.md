@@ -32,8 +32,7 @@ The 10.10.0.* network range is what the VPN clients get assigned when they
 connect.
 
 
-![Image of SwirlVPN configuration](https://github.com/psiphi75/SwirlVPN/doc/SwirlVPN.png)
-
+![Image of SwirlVPN configuration](https://raw.githubusercontent.com/psiphi75/SwirlVPN/master/doc/SwirlVPN.png)
 
 ## License
 SwirlVPN is free software: you can redistribute it and/or modify
