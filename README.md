@@ -16,35 +16,36 @@ The technology is built using:
  - MongoDB as the database
  - OpenVPN as the VPN technology
 
-## License
 
-    SwirlVPN is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+## Configuration
 
-    SwirlVPN is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.
-
-
-## CONFIG_TODO
-
-    The configuration is mostly in the "./common/config.js" folder.  If there
-    are any other configuration options, these can be found by searching for
-    "CONFIG_TODO".
+The configuration is mostly in the "./common/config.js" folder.  If there
+are any other configuration options, these can be found by searching for
+"CONFIG_TODO".
 
 ## Overview of setup
 
-    The diagram below shows how SwirlVPN looks when it is setup.  The IP range
-    10.8.0.* marks the internal network of the SwirlVPN servers, client traffic
-    does not move through this network, it is only for server-to-server comms.
-    The 10.10.0.* network range is what the VPN clients get assigned when they
-    connect.
+The diagram below shows how SwirlVPN looks when it is setup.  The IP range
+10.8.0.* marks the internal network of the SwirlVPN servers, client traffic
+does not move through this network, it is only for server-to-server comms.
+The 10.10.0.* network range is what the VPN clients get assigned when they
+connect.
 
 
-    ![Image of SwirlVPN configuration](https://github.com/psiphi75/SwirlVPN/doc/SwirlVPN.png)
+![Image of SwirlVPN configuration](https://github.com/psiphi75/SwirlVPN/doc/SwirlVPN.png)
+
+
+## License
+SwirlVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+SwirlVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with SwirlVPN.  If not, see <http://www.gnu.org/licenses/>.
+
